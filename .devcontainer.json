@@ -1,0 +1,49 @@
+// See https://aka.ms/vscode-remote/devcontainer.json for format details.
+{
+  "workspaceMount": "src=${localWorkspaceFolder},dst=/workspace,type=bind",
+  "workspaceFolder": "/workspace",
+  "dockerFile": "Dockerfile",
+
+  "remoteUser" : "user",
+  "build": {
+    "args": {
+      // Set these to your UID/GID to match your workspace owner
+      "USER_UID": "1000", 
+      "USER_GID": "1000"
+    }
+  },
+  "runArgs": [
+      "--name=${localWorkspaceFolderBasename}",
+      
+      // Allows using a ptrace-based debugger
+      "--cap-add=SYS_PTRACE",
+      "--security-opt", "seccomp=unconfined",
+      
+      // to push
+      "-v", "${env:HOME}${env:USERPROFILE}/.ssh:/home/user/.ssh",
+      
+      // graphics
+      "--env=DISPLAY", 
+      "--group-add=video",
+      "--volume=${env:HOME}/.Xauthority:/home/user/.Xauthority:rw",
+      
+      // Networking
+      "--net=host",
+      "--ipc=host",
+
+      // Disable core files
+      "--ulimit", "core=0"
+  ],
+  // vscode extensions
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "llvm-vs-code-extensions.vscode-clangd"
+      ],
+      "settings": {
+        "C_Cpp.intelliSenseEngine": "disabled"
+      }
+    }
+  }
+}
