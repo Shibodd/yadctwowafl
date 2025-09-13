@@ -15,5 +15,5 @@ set (CMAKE_C_FLAGS_INIT "-winsysroot $ENV{WINDOWS_SYSROOT_PATH}")
 set (CMAKE_CXX_FLAGS_INIT "-winsysroot $ENV{WINDOWS_SYSROOT_PATH}")
 set (CMAKE_EXE_LINKER_FLAGS_INIT "/winsysroot:$ENV{WINDOWS_SYSROOT_PATH}")
 
-# Force build with /MD (otherwise clang may attempt to build with /Md, but we don't have the appropriate debug libraries)
+# Force build with /MD (otherwise clang may attempt to build with /Md, but we don't have the appropriate debug libraries. You can pass --include-debug-libs to xwin to get them, check its docs)
 set (CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreadedDLL")
