@@ -19,3 +19,12 @@ clang-cl --target=x86_64-pc-windows-msvc -MD -winsysroot ${WINDOWS_SYSROOT_PATH}
 ```
 
 then run it with `wine build/example.exe`
+
+
+## DIA SDK (TODO: automatize this)
+
+Copy the `DIA SDK` folder from Windows to the sysroot.
+
+In the CMakeLists you can then link your target against `diaguids`.
+
+In order to run the application with Wine, first register the DIA SDK dll with `regsvr32 /s "${WINDOWS_SYSROOT_PATH}/DIA SDK/bin/amd64/msdia140.dll"`.
