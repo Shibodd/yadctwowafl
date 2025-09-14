@@ -8,8 +8,8 @@
   "build": {
     "args": {
       // Set these to your UID/GID to match your workspace owner
-      "USER_UID": "1000", 
-      "USER_GID": "1000"
+      "USER_UID": "1001", 
+      "USER_GID": "1001"
     }
   },
   "runArgs": [
@@ -25,7 +25,8 @@
       // graphics
       "--env=DISPLAY", 
       "--group-add=video",
-      "--volume=${env:HOME}/.Xauthority:/home/user/.Xauthority:rw",
+      "--volume=${env:HOME}/.Xauthority:/home/user/.Xauthority:ro",
+      "--volume=/tmp/.X11-unix:/tmp/.X11-unix:ro",
       
       // Networking
       "--net=host",
